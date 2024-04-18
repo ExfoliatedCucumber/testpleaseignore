@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('prepare') {
+            steps {
+                echo "Job: ${env.JOB_NAME}"
+                echo "Build id: ${env.BUILD_ID}"
+                echo "Node name: ${env.NODE_NAME}"
+                echo "Workspace: ${env.WORKSPACE}"
+            }
+        }
+        stage('proceed') {
+            input {
+                message 'Should we carry on?'
+                ok 'Oh, yeah'
+            }
+            steps {
+                echo 'Okidoki, proceeding'
+            }
+        }
+        stage('build') {
+            steps {
+                echo 'Writing a file'
+                writeFile file: 'silly.txt', text: '''This is just
+                    a silly text file 
+                    for demo purposes
+                    '''
+                echo 'Written silly.txt to the workspace'
+            }
+        }
+    }
+    post {
+        success {
+            echo 'Yes! We made it.'
+        }
+    }
+}
