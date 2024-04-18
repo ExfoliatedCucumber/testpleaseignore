@@ -12,7 +12,7 @@ pipeline {
                 echo "Node name: ${env.NODE_NAME}"
                 echo "Workspace: ${env.WORKSPACE}"
                 echo "Database engine: ${DB_ENGINE}"
-                echo "Is auth disabled: ${DISABLE_AUTH"
+                echo "Is auth disabled: ${DISABLE_AUTH}"
             }
         }
         stage('proceed') {
